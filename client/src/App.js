@@ -1,19 +1,17 @@
 import './App.css';
 import React from "react";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
-import Welcome from "./pages/welcome";
-
-// import React, {createContext, useContext} from "react";
-// import {useHistory, Route, Switch, BrowserRouter,} from "react-router-dom";
-// export const UserContext = createContext();
+// import Welcome from "./pages/welcome";
+import Introduction from "./pages/introduction";
+import 'antd/dist/antd.css';
 
 const Routing = () => {
-    // const history = useHistory();
-    // const {state, dispatch} = useContext(UserContext);
     return (
         <Switch>
             <Route exact path="/">
-                <Welcome />
+                {/*<Welcome/>*/}
+                {/*<Introduction num="10" message={intro} />*/}
+
             </Route>
         </Switch>
     )

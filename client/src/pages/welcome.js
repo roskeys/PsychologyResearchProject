@@ -7,31 +7,22 @@ const Welcome = () => {
     const [gender, setGender] = useState("M");
     const [age, setAge] = useState(21);
 
-    // const formItemLayout = {
-    //     labelCol: {span: 4},
-    //     wrapperCol: {span: 14}
-    // };
-    //
-    // const buttonItemLayout = {
-    //     wrapperCol: {
-    //         span: 14,
-    //         offset: 4,
-    //     }
-    // };
 
     const submitInfo = () => {
-        console.log(age, gender);
+        console.log({age, gender});
     }
 
     return (
-        <div>
+        <div className="welcome">
             <Form
                 layout={formLayout}
                 form={form}
                 initialValues={{
                     layout: formLayout,
-                }}>
-                <Form.Item label="Form Layout" name="layout">
+                }}
+                className="form"
+            >
+                <Form.Item label="We need your age and gender" name="layout">
                     <Radio.Group value={formLayout}>
                         <Radio.Button value="M" onClick={() => {
                             setGender("M")
