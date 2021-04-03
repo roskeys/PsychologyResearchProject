@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {Form, Button, Radio, InputNumber} from 'antd';
+import React, { useState } from 'react';
+import { Form, Button, Radio, InputNumber } from 'antd';
 
-const Welcome = () => {
+const Welcome = ({ afterSubmit }) => {
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState("horizontal");
     const [gender, setGender] = useState("M");
@@ -9,7 +9,8 @@ const Welcome = () => {
 
 
     const submitInfo = () => {
-        console.log({age, gender});
+        console.log({ age, gender });
+        afterSubmit();
     }
 
     return (
@@ -36,7 +37,7 @@ const Welcome = () => {
                 <Form.Item label="age">
                     <InputNumber min={0} max={100} defaultValue={21} onClick={(e) => {
                         setAge(e.target.value)
-                    }}/>
+                    }} />
                 </Form.Item>
 
                 <Form.Item>
