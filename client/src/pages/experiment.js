@@ -10,7 +10,7 @@ function Exp(props) {
     <div className = "Exp">
         <Image
         width={200}
-        src="{props.path}"
+        src={props.path}
         />
         <Button>
         Next
