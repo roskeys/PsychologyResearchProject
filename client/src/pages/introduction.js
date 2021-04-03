@@ -1,14 +1,19 @@
 import React from 'react';
-
+import "../App.css"
 function Introduction(props){
     return (
-        <div className="welcome">
+        <div className="outer-background">
            <h1>
-               Experiment {props.num}
+               Game {props.num}
            </h1>
             <p>
                 {props.message}
             </p>
+            <button
+                className="submit-button"
+            onClick={props.nextStage}>
+                Start
+            </button>
         </div>
     );
 }

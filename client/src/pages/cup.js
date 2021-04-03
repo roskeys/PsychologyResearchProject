@@ -26,7 +26,6 @@ class Cup extends React.Component {
     }
 
     onMouseDown = (e) => {
-        console.log("Mouse down");
         if (e.button !== 0) return;
         let pos = {left: this.myRef.current.offsetLeft, top: this.myRef.current.offsetTop}
         this.setState({
@@ -41,7 +40,6 @@ class Cup extends React.Component {
     }
 
     onMouseUp = (e, props) => {
-        console.log("Mouse up")
         this.setState({dragging: false});
         e.stopPropagation();
         e.preventDefault();
