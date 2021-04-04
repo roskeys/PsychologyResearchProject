@@ -64,7 +64,7 @@ class Cup extends React.Component {
         return (
             <span ref={this.myRef} onMouseDown={this.onMouseDown}
                   style={{position: 'absolute', left: this.state.pos.x + 'px', top: this.state.pos.y + 'px'}}>
-                <img src={cup}/>
+                <img src={cup} alt="https://www.clipartmax.com/png/small/27-275541_upside-down-plastic-cup.png"/>
             </span>
         )
     }

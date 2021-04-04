@@ -2,18 +2,19 @@ import React, {useState} from 'react';
 import {Form, Button, Radio, InputNumber} from 'antd';
 import "../App.css";
 import {general_introduction} from "../introductions"
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+
 const Welcome = ({afterSubmit}) => {
     const [form] = Form.useForm();
-    const [formLayout, setFormLayout] = useState("horizontal");
     const [gender, setGender] = useState("M");
     const [age, setAge] = useState(21);
-    const submitInfo = () => {
-        console.log({age, gender});
+    const submitInfo = async () => {
+        const fp = await FingerprintJS.load();
+        const result = await fp.get();
+        const visitorId = result.visitorId;
+        console.log({age, gender, "fingerPrint": visitorId});
         afterSubmit();
     }
-    const onFormLayoutChange = ({layout}: { layout: LayoutType }) => {
-        setFormLayout(layout);
-    };
     return (
         <div className="outer-background">
             <div className="welcome">
@@ -24,20 +25,13 @@ const Welcome = ({afterSubmit}) => {
                     {general_introduction}
                 </p>
                 <Form
-                    layout={formLayout}
                     form={form}
-                    initialValues={{
-                        layout: formLayout,
-                    }}
-                    className="form"
-                    onValuesChange={onFormLayoutChange}>
-
+                    className="form">
                     <h2>Fill in age and gender to proceed</h2>
-
                     <Form.Item
                         className="form item">
                         <h3>Gender</h3>
-                        <Radio.Group value={formLayout}>
+                        <Radio.Group>
                             <Radio.Button
                                 value="M"
                                 onClick={() => {
@@ -56,7 +50,6 @@ const Welcome = ({afterSubmit}) => {
                             </Radio.Button>
                         </Radio.Group>
                     </Form.Item>
-
                     <Form.Item>
                         <h3>Age</h3>
                         <InputNumber
