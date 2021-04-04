@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import './App.css';
 import Cup from "./pages/cup";
 import Introduction from "./pages/introduction";
+import Thank from "./pages/thanks";
 import {experiment1_intro, experiment2_intro, experiment3_intro} from "./introductions";
 
 function SamplePage(props) {
@@ -19,7 +20,7 @@ function App() {
     const [stage, setStage] = useState(0);
     const nextStage = function () {
         let step = 1;
-        while (!(stage+step) in stages){
+        while (!((stage+step) in stages) && (step < 100)){
             step += 1;
         }
         if ((stage+step) in stages){
@@ -35,7 +36,7 @@ function App() {
         5: <Cup initialPos={0} nextStage={nextStage}/>,
         35: <Introduction num="2" message={experiment2_intro} nextStage={nextStage}/>,
         55: <Introduction num="3" message={experiment3_intro} nextStage={nextStage}/>,
-        100: <Welcome />
+        100: <Thank />
     };
     return stages[stage];
 }

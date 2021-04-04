@@ -35,7 +35,6 @@ const Welcome = ({afterSubmit}) => {
                     <h2>Fill in age and gender to proceed</h2>
 
                     <Form.Item
-                        name="layout"
                         className="form item">
                         <h3>Gender</h3>
                         <Radio.Group value={formLayout}>
