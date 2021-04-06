@@ -1,6 +1,4 @@
 import React from 'react';
-import 'antd/dist/antd.css';
-import {Image} from 'antd';
 import {Button} from 'antd';
 import "../App.css";
 
@@ -9,48 +7,41 @@ function Exp(props) {
     let right = !props.left ? "1" : "0";
     return (
         <div className="outer-background">
-            <img
-                src={props.path}
-                style={{
-                    width: "40%",
-                    height: "40%",
-                    minWidth: "50px",
-                    minHeight: "50px",
-                    maxWidth: "250px",
-                    maxHeight: "250px",
-                    opacity: left,
-                    paddingLeft: "5%",
-                    float: "left"
-                }}
-                alt={props.path}
-            />
-            <br/>
-            <img
-                width={200}
-                height={200}
-                src={props.path}
-                style={{
-                    width: "40%",
-                    height: "40%",
-                    minWidth: "50px",
-                    minHeight: "50px",
-                    maxWidth: "250px",
-                    maxHeight: "250px",
-                    opacity: right,
-                    paddingRight: "5%",
-                    float: "right"
-                }}
-            />
+            <div>
+                <img
+                    src={props.path}
+                    style={{
+                        width: "45%",
+                        height: "45%",
+                        opacity: left,
+                        paddingLeft: "10%",
+                        float: "left"
+                    }}
+                    alt={props.path}
+                />
+                <img
+                    width={200}
+                    height={200}
+                    src={props.path}
+                    style={{
+                        width: "45%",
+                        height: "45%",
+                        opacity: right,
+                        paddingRight: "10%",
+                        float: "right"
+                    }}
+                />
+            </div>
             <div style={{
                 display: "block",
                 clear: "both",
                 paddingTop: "10%"
             }}/>
-            <Button
+            <button
                 className="submit-button"
                 onClick={props.nextStage}>
                 Next
-            </Button>
+            </button>
         </div>
     );
 }

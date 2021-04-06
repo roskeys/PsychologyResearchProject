@@ -27,10 +27,10 @@ const Welcome = ({afterSubmit}) => {
                 <Form
                     form={form}
                     className="form">
-                    <h2>Fill in age and gender to proceed</h2>
+                    <h3>Fill in age and gender to proceed</h3>
                     <Form.Item
                         className="form item">
-                        <h3>Gender</h3>
+                        <h4>Gender</h4>
                         <Radio.Group>
                             <Radio.Button
                                 value="M"
@@ -51,7 +51,7 @@ const Welcome = ({afterSubmit}) => {
                         </Radio.Group>
                     </Form.Item>
                     <Form.Item>
-                        <h3>Age</h3>
+                        <h4>Age</h4>
                         <InputNumber
                             min={0} max={100} defaultValue={21}
                             onClick={(e) => {

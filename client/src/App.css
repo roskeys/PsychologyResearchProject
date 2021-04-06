@@ -3,18 +3,17 @@
   margin: 0;
 }
 html, body, #fullheight{
-  min-height: 100%!important;
   height: 100%;
   background-color: #d6e4ff;
 }
 
 .outer-background {
-  min-height: 800px;
-  padding-top: 20%;
+  padding-top: 12vh;
+  height: 100vh;
+  width: 90vw;
+  min-width: 300px;
   margin: 0 auto;
   background-color: #adc6ff;
-  width: 70%;
-  max-width: 1000px;
 }
 
 h1 {
@@ -23,24 +22,35 @@ h1 {
 }
 
 h2 {
+  font-size: 36px;
+  text-align: center;
+}
+
+h3 {
   font-size: 24px;
   text-align: center;
 }
 
+h4 {
+  font-size: 16px;
+  text-align: center;
+}
+
 p {
-  padding: 100px;
+  padding: 3vw 10vw;
   font-size: 18px;
 }
 
 .form {
   text-align: center;
+  vertical-align: center;
   display: block;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 .age{
   text-align: center;
-  margin: 60px auto;
+  margin: 10px auto;
 }
 
 .age-button, .gender-button{
@@ -57,8 +67,13 @@ p {
   height: 50px;
   width: 100px;
   font-size: 24px;
-  margin: 0 auto;
+  margin: 0 auto!important;
   text-align: center;
   vertical-align: center;
   display: block;
+}
+
+.cup {
+  width: 50%;
+  height: 50%;
 }

@@ -62,10 +62,14 @@ class Cup extends React.Component {
 
     render() {
         return (
-            <span ref={this.myRef} onMouseDown={this.onMouseDown}
-                  style={{position: 'absolute', left: this.state.pos.x + 'px', top: this.state.pos.y + 'px'}}>
-                <img src={cup} alt="https://www.clipartmax.com/png/small/27-275541_upside-down-plastic-cup.png"/>
+            <div>
+                <h3>Please drag the cup to shake and release the cup to proceed to next page</h3>
+                <span ref={this.myRef} onMouseDown={this.onMouseDown}
+                      style={{position: 'absolute', left: this.state.pos.x + 'px', top: this.state.pos.y + 'px'}}>
+                <img src={cup} className="cup"
+                     alt="https://www.clipartmax.com/png/small/27-275541_upside-down-plastic-cup.png"/>
             </span>
+            </div>
         )
     }
 }
