@@ -9,7 +9,8 @@ html, body, #fullheight{
 }
 
 .outer-background {
-  min-height: 930px;
+  min-height: 800px;
+  padding-top: 20%;
   margin: 0 auto;
   background-color: #adc6ff;
   width: 70%;
