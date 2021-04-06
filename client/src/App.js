@@ -23,8 +23,13 @@ function App() {
         }
     }
 
+    const hello = function () {
+        console.log("Hello");
+    }
+
     const stages = {
-        0: <Exp path={number6} left={true} nextStage={nextStage}/>,
+        0: <Cup nextStage={nextStage} hello={hello}/>,
+        // 0: <Exp path={number6} left={true} nextStage={nextStage}/>,
         1: <Exp path={number6} left={false} nextStage={nextStage}/>,
         3: <Welcome afterSubmit={nextStage}/>,
         4: <Introduction num="1" message={experiment1_intro} nextStage={nextStage}/>,

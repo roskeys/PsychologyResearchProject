@@ -1,77 +1,91 @@
-import React from "react";
-import cup from "../image/cup.png";
+import React from 'react';
+import {StaggeredMotion, spring, presets} from 'react-motion';
+import range from 'lodash.range';
 
 class Cup extends React.Component {
-    // https://stackoverflow.com/a/63102915
     constructor(props) {
         super(props);
-        this.myRef = React.createRef();
         this.state = {
-            counter: this.props.counter,
-            pos: this.props.initialPos,
-            dragging: false,
-            rel: null
+            x: 250,
+            y: 300,
+            ts: Date.now()
         };
         this.proceed = props.nextStage;
+    };
+
+    componentDidMount() {
+        window.addEventListener('mousemove', this.handleMouseMove);
+        window.addEventListener('touchmove', this.handleTouchMove);
+        window.addEventListener('mouseup', this.handleMouseUp);
+    };
+
+    componentWillUnmount() {
+        window.removeEventListener('mousemove', this.handleMouseMove);
+        window.removeEventListener('touchmove', this.handleTouchMove);
+        window.removeEventListener('mouseup', this.handleMouseUp);
     }
 
-    componentDidUpdate(props, state) {
-        if (this.state.dragging && !state.dragging) {
-            document.addEventListener('mousemove', this.onMouseMove);
-            document.addEventListener('mouseup', this.onMouseUp);
-        } else if (!this.state.dragging && state.dragging) {
-            document.removeEventListener('mousemove', this.onMouseMove);
-            document.removeEventListener('mouseup', this.onMouseUp);
+    handleMouseUp = (e) => {
+        console.log(Date.now() - this.state.ts);
+        if (Date.now() - this.state.ts > 1000) {
+            e.stopPropagation();
+            e.preventDefault();
+            this.proceed();
         }
     }
 
-    onMouseDown = (e) => {
-        if (e.button !== 0) return;
-        let pos = {left: this.myRef.current.offsetLeft, top: this.myRef.current.offsetTop}
-        this.setState({
-            dragging: true,
-            rel: {
-                x: e.pageX - pos.left,
-                y: e.pageY - pos.top
-            }
+    handleMouseMove = ({pageX: x, pageY: y}) => {
+        this.setState({x, y});
+    };
+
+    handleTouchMove = ({touches}) => {
+        this.handleMouseMove(touches[0]);
+    };
+
+    getStyles = (prevStyles) => {
+        const endValue = prevStyles.map((_, i) => {
+            return i === 0
+                ? this.state
+                : {
+                    x: spring(prevStyles[i - 1].x, presets.gentle),
+                    y: spring(prevStyles[i - 1].y, presets.gentle),
+                };
         });
-        e.stopPropagation();
-        e.preventDefault();
-    }
-
-    onMouseUp = (e, props) => {
-        this.setState({dragging: false});
-        e.stopPropagation();
-        e.preventDefault();
-        this.proceed();
-    }
-
-    onMouseMove = (e) => {
-        if (!this.state.dragging) return;
-
-        this.setState({
-            pos: {
-                x: e.pageX - this.state.rel.x,
-                y: e.pageY - this.state.rel.y
-            }
-        });
-        e.stopPropagation();
-        e.preventDefault();
-    }
-
+        return endValue;
+    };
 
     render() {
         return (
             <div>
-                <h3>Please drag the cup to shake and release the cup to proceed to next page</h3>
-                <span ref={this.myRef} onMouseDown={this.onMouseDown}
-                      style={{position: 'absolute', left: this.state.pos.x + 'px', top: this.state.pos.y + 'px'}}>
-                <img src={cup} className="cup"
-                     alt="https://www.clipartmax.com/png/small/27-275541_upside-down-plastic-cup.png"/>
-            </span>
+                <div style={{
+                    textAlign: "center"
+                }}>
+                    <h4>Drag and shake the cup, release to continue.</h4>
+                    <br/>
+                    <h5>If release does not proceed, click the cup icon to proceed.</h5>
+                </div>
+                <StaggeredMotion
+                    defaultStyles={range(1).map(() => ({x: 0, y: 0}))}
+                    styles={this.getStyles}>
+                    {balls =>
+                        <div className="cup-base">
+                            {balls.map(({x, y}, i) =>
+                                <div
+                                    key={i}
+                                    className={`cup cup-${i}`}
+                                    style={{
+                                        WebkitTransform: `translate3d(${x - 25}px, ${y - 25}px, 0)`,
+                                        transform: `translate3d(${x - 25}px, ${y - 25}px, 0)`,
+                                        zIndex: balls.length - i,
+                                    }}/>
+                            )}
+                        </div>
+                    }
+                </StaggeredMotion>
+                <h6></h6>
             </div>
-        )
-    }
+        );
+    };
 }
 
 export default Cup;

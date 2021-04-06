@@ -1,6 +1,7 @@
 import React from 'react';
 import "../App.css"
-function Thank(){
+
+function Thank() {
     return (
         <div className="outer-background">
             <h1 style={{
