@@ -70,20 +70,23 @@ p {
     text-align: center;
     vertical-align: center;
     display: block;
+    position: absolute;
+    bottom: 15vh;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .cup-base {
     width: 100vw;
-    height: 75vh;
+    height: 50vh;
     position: absolute;
-    background: #EEE;
 }
 
 .cup {
-    width: 210px;
-    height: 308px;
+    width: 105px;
+    height: 154px;
     position: absolute;
-    background-size: 200px;
+    background-size: 100px;
     background-repeat: no-repeat;
 }
 

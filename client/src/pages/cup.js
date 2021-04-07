@@ -6,23 +6,42 @@ class Cup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            x: 250,
-            y: 300,
-            ts: Date.now()
+            x: document.body.scrollWidth / 2 - 50,
+            y: 200,
+            ts: Date.now(),
+            pressed: false
         };
+        // this.toggleFullScreen();
+        console.log(this.state);
         this.proceed = props.nextStage;
     };
 
+    toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    }
+
     componentDidMount() {
         window.addEventListener('mousemove', this.handleMouseMove);
-        window.addEventListener('touchmove', this.handleTouchMove);
+        window.addEventListener('touchmove', this.handleTouchMove, {passive: false});
         window.addEventListener('mouseup', this.handleMouseUp);
+        window.addEventListener('mousedown', this.handleMouseDown);
+        window.addEventListener("touchend", this.handleMouseUp);
+        window.addEventListener("touchstart", this.handleMouseDown);
     };
 
     componentWillUnmount() {
         window.removeEventListener('mousemove', this.handleMouseMove);
         window.removeEventListener('touchmove', this.handleTouchMove);
         window.removeEventListener('mouseup', this.handleMouseUp);
+        window.removeEventListener('mousedown', this.handleMouseDown);
+        window.removeEventListener("touchend", this.handleMouseUp);
+        window.removeEventListener("touchstart", this.handleMouseDown);
     }
 
     handleMouseUp = (e) => {
@@ -34,8 +53,18 @@ class Cup extends React.Component {
         }
     }
 
+    handleMouseDown = (e) => {
+        this.setState(
+            {
+                ts: Date.now(),
+                pressed: true
+            })
+    }
+
     handleMouseMove = ({pageX: x, pageY: y}) => {
-        this.setState({x, y});
+        if (this.state.pressed) {
+            this.setState({x: x - 50, y: y - 240});
+        }
     };
 
     handleTouchMove = ({touches}) => {
@@ -47,8 +76,8 @@ class Cup extends React.Component {
             return i === 0
                 ? this.state
                 : {
-                    x: spring(prevStyles[i - 1].x, presets.gentle),
-                    y: spring(prevStyles[i - 1].y, presets.gentle),
+                    x: spring(Math.max(prevStyles[i - 1].x, document.body.clientWidth), presets.gentle),
+                    y: spring(Math.max(prevStyles[i - 1].y, document.body.clientHeight), presets.gentle),
                 };
         });
         return endValue;
@@ -56,7 +85,7 @@ class Cup extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="outer-background">
                 <div style={{
                     textAlign: "center"
                 }}>
@@ -74,15 +103,15 @@ class Cup extends React.Component {
                                     key={i}
                                     className={`cup cup-${i}`}
                                     style={{
-                                        WebkitTransform: `translate3d(${x - 25}px, ${y - 25}px, 0)`,
-                                        transform: `translate3d(${x - 25}px, ${y - 25}px, 0)`,
+                                        WebkitTransform: `translate3d(${x}px, ${y}px, 0)`,
+                                        transform: `translate3d(${x}px, ${y}px, 0)`,
                                         zIndex: balls.length - i,
                                     }}/>
                             )}
                         </div>
                     }
                 </StaggeredMotion>
-                <br/>
+                <footer/>
             </div>
         );
     };

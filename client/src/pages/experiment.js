@@ -13,29 +13,25 @@ function Exp(props) {
                         width: "auto",
                         height: "auto",
                         opacity: left,
-                        paddingLeft: "10%",
                         float: "left",
-                        minWidth: "200px",
-                        minHeight: "200px",
-                        maxWidth: "400px",
-                        maxHeight: "400px"
+                        minWidth: "100px",
+                        minHeight: "100px",
+                        maxWidth: "200px",
+                        maxHeight: "200px"
                     }}
                     alt={props.path}
                 />
                 <img
-                    width={200}
-                    height={200}
                     src={props.path}
                     style={{
                         width: "auto",
                         height: "auto",
                         opacity: right,
-                        paddingRight: "10%",
                         float: "right",
-                        minWidth: "200px",
-                        minHeight: "200px",
-                        maxWidth: "400px",
-                        maxHeight: "400px"
+                        minWidth: "100px",
+                        minHeight: "100px",
+                        maxWidth: "200px",
+                        maxHeight: "200px"
                     }}
                     alt={props.path}
                 />
