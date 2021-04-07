@@ -7,7 +7,7 @@ function Thank() {
             <h1 style={{
                 fontSize: "48px",
                 textAlign: "center",
-                paddingTop: "30%",
+                paddingTop: "15%",
             }}>
                 Thank you for participant!
             </h1>
