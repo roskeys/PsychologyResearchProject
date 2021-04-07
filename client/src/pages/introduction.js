@@ -4,7 +4,7 @@ import "../App.css";
 import {general_introduction} from "../texts"
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
-const Welcome = ({afterSubmit}) => {
+const Introduction = ({afterSubmit}) => {
     const [form] = Form.useForm();
     const [gender, setGender] = useState("M");
     const [age, setAge] = useState(21);
@@ -75,4 +75,4 @@ const Welcome = ({afterSubmit}) => {
     );
 }
 
-export default Welcome;
+export default Introduction;
