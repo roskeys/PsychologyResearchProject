@@ -4,10 +4,15 @@ import os
 import pathlib
 import random
 import uuid
+from datetime import datetime
 from typing import Any, Callable, Dict, List, Tuple
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+
+
+if not os.path.exists('./data'):
+    os.makedirs('./data')
 
 
 logging.config.dictConfig({
@@ -28,7 +33,7 @@ logging.config.dictConfig({
             'formatter': 'default',
             'filename': './data/app.log',
             'maxBytes': 10000,
-            'backupCount': 10,
+            'backupCount': 100,
         },
     },
     'root': {
@@ -75,7 +80,7 @@ class FileDB:
 
 class DB:
     # 0:session_id, 1:gender, 2:age, 3:fingerprint, 4:duplicate, 5:exp1_group, 6:exp2_group, 7:exp3_group
-    reg = FileDB('./data/registration.csv', (str, str, int, str, bool, int, int, int))
+    reg = FileDB('./data/registration.csv', (str, str, int, str, bool, int, int, int, datetime.fromisoformat))
     # session_id, group, estimation
     exp1 = FileDB('./data/exp1.csv', (str, int, float))
     # session_id, group, estimation
@@ -124,7 +129,8 @@ def register():
         session_id,
         gender, age,
         fingerprint, duplicate,
-        exp1_group, exp2_group, exp3_group))
+        exp1_group, exp2_group, exp3_group,
+        str(datetime.now())))
 
     # response
     return jsonify({
