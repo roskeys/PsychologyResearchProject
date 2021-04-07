@@ -28,19 +28,24 @@ function App() {
         }
     }
 
-    const stages = {
-        0: <Introduction setSession={setSession} afterSubmit={nextStage}/>,
-        15: <Exp path={Smile} left={false} nextStage={nextStage}/>,
-        1: <Dice path={number6} nextStage={nextStage}/>,
-        5: <Estimate min={0} max={100} nextStage={nextStage}/>,
-        10: <Exp path={number6} left={false} nextStage={nextStage}/>,
-        2: <Cup nextStage={nextStage}/>,
-        25: <Instruction num="1" message={experiment1_intro} nextStage={nextStage}/>,
-        30: <Cup initialPos={0} nextStage={nextStage}/>,
-        35: <Instruction num="2" message={experiment2_intro} nextStage={nextStage}/>,
-        55: <Instruction num="3" message={experiment3_intro} nextStage={nextStage}/>,
-        100: <Thank/>
-    };
+    const stages = [
+        <Introduction setSession={setSession} afterSubmit={nextStage}/>,
+    
+        <Instruction num="1" message={experiment1_intro} nextStage={nextStage}/>,
+        <Exp path={Smile} left={false} nextStage={nextStage}/>,
+        <Estimate min={0} max={100} nextStage={nextStage}/>,
+    
+        <Instruction num="2" message={experiment2_intro} nextStage={nextStage}/>,
+        <Dice path={number6} nextStage={nextStage}/>,
+        <Cup initialPos={0} nextStage={nextStage}/>,
+        <Estimate min={0} max={100} nextStage={nextStage}/>,
+
+        <Instruction num="3" message={experiment3_intro} nextStage={nextStage}/>,
+        <Exp path={Smile} left={false} nextStage={nextStage}/>,
+        <Estimate min={0} max={100} nextStage={nextStage}/>,
+
+        <Thank/>
+    ];
     return stages[stage];
 }
 
