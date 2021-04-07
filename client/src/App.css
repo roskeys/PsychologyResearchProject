@@ -72,6 +72,10 @@ p {
     transform: translateX(-50%);
 }
 
+.submit-button:active  {
+    transform: translateY(4px) translateX(-50%);
+}
+
 .cup-base {
     width: 100vw;
     height: 50vh;
@@ -111,5 +115,5 @@ button:hover {
 button:active {
     background-color: #d3f261;
     box-shadow: 0 5px #666;
-    transform: translateY(4px) translateX(-50%);
+    transform: translateY(4px);
 }
