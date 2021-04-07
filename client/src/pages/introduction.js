@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
-import {Form, Button, Radio, InputNumber} from 'antd';
-import "../App.css";
-import {general_introduction} from "../texts"
+import React, { useState } from 'react';
+import { Form, Radio, InputNumber } from 'antd';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import './introduction.css'
 
-const Introduction = ({afterSubmit}) => {
+const Introduction = ({ afterSubmit }) => {
     const [form] = Form.useForm();
     const [gender, setGender] = useState("M");
     const [age, setAge] = useState(21);
@@ -12,22 +11,33 @@ const Introduction = ({afterSubmit}) => {
         const fp = await FingerprintJS.load();
         const result = await fp.get();
         const visitorId = result.visitorId;
-        console.log({age, gender, "fingerPrint": visitorId});
+        console.log({ age, gender, "fingerPrint": visitorId });
         afterSubmit();
     }
     return (
-        <div className="outer-background">
+        <div className="introduction-page">
             <div className="welcome">
-                <h1 className="main-titles">
-                    Introduction
+                <h1 className="main-titles" style={{ paddingTop: 50 }}>
+                    Welcome🎉
                 </h1>
-                <p className="paragraphs">
-                    {general_introduction}
-                </p>
+                <div style={{ margin: "auto", padding: "10px 20px", maxWidth: 800, marginBottom: 40 }}>
+                    <div style={{ fontSize: 18, marginBottom: 15 }}>
+                        We are a group of students from Singapore University of Technology and Design (SUTD)
+                        doing a project for our psychology course. In this project, we focus on the factors
+                        that affect people’s estimation of the probability of random events.
+                    </div>
+                    <div style={{ fontSize: 18 }}>
+                        Participation is completely voluntary and the information collected will be completely
+                        anonymous. Your age and gender are required for our later analysis. The experiment
+                        consists of three parts, each takes less than 3 minutes. You can easily participate by
+                        clicking buttons and dragging objects on the screen. If you have about 5-10 mins to
+                        spare, please do help us out with our experiments. It will be fun! Thanks a lot!
+                    </div>
+                </div>
                 <Form
                     form={form}
-                    className="form">
-                    <h3>Fill in age and gender to proceed</h3>
+                    className="form"
+                >
                     <Form.Item
                         className="form item">
                         <h4>Gender</h4>
@@ -61,15 +71,16 @@ const Introduction = ({afterSubmit}) => {
                         />
                     </Form.Item>
 
-                    <Form.Item>
-                        <Button
-                            type="primary"
+                    <Form.Item style={{ marginTop: 50 }}>
+                        <button
+                            className="submit-button"
                             onClick={() => submitInfo()}
-                            className="form submit-button">
-                            Submit
-                        </Button>
+                        >
+                            Start
+                        </button>
                     </Form.Item>
                 </Form>
+                <div style={{ height: 50 }}></div>
             </div>
         </div>
     );
