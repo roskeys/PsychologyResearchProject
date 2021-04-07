@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Form, Button, Radio, InputNumber} from 'antd';
 import "../App.css";
-import {general_introduction} from "../introductions"
+import {general_introduction} from "../texts"
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 const Welcome = ({afterSubmit}) => {

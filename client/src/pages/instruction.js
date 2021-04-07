@@ -1,7 +1,7 @@
 import React from 'react';
 import "../App.css"
 
-function Introduction(props) {
+function Instruction(props) {
     return (
         <div className="outer-background">
             <h1>
@@ -19,4 +19,4 @@ function Introduction(props) {
     );
 }
 
-export default Introduction;
+export default Instruction;
