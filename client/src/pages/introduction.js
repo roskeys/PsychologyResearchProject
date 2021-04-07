@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Radio, InputNumber } from 'antd';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
-import './introduction.css'
+import axios from 'axios';
+import './introduction.css';
 
-const Introduction = ({ afterSubmit }) => {
-    const [form] = Form.useForm();
-    const [gender, setGender] = useState("M");
-    const [age, setAge] = useState(21);
-    const submitInfo = async () => {
+const Introduction = ({ afterSubmit, setSession }) => {
+
+    const submitInfo = async (form) => {
         const fp = await FingerprintJS.load();
         const result = await fp.get();
         const visitorId = result.visitorId;
-        console.log({ age, gender, "fingerPrint": visitorId });
-        afterSubmit();
+        form["fingerprint"] = visitorId;
+
+        axios.post("/api/register", form).then(res => {
+            setSession(res.data);
+            afterSubmit();
+        });
     }
     return (
         <div className="introduction-page">
@@ -34,48 +37,24 @@ const Introduction = ({ afterSubmit }) => {
                         spare, please do help us out with our experiments. It will be fun! Thanks a lot!
                     </div>
                 </div>
-                <Form
-                    form={form}
-                    className="form"
-                >
+                <Form className="form" onFinish={submitInfo}>
+                    <h4>Gender</h4>
                     <Form.Item
-                        className="form item">
-                        <h4>Gender</h4>
+                        name="gender"
+                        rules={[{ required: true, message: 'Please choose your gender' }]}
+                    >
                         <Radio.Group>
-                            <Radio.Button
-                                value="M"
-                                onClick={() => {
-                                    setGender("M")
-                                }}
-                                className="form gender-button">
-                                Male
-                            </Radio.Button>
-                            <Radio.Button
-                                value="F"
-                                onClick={() => {
-                                    setGender("F")
-                                }}
-                                className="form age-button">
-                                Female
-                            </Radio.Button>
+                            <Radio.Button value="M">Male</Radio.Button>
+                            <Radio.Button value="F">Female</Radio.Button>
                         </Radio.Group>
                     </Form.Item>
-                    <Form.Item>
-                        <h4>Age</h4>
-                        <InputNumber
-                            min={0} max={100} defaultValue={21}
-                            onClick={(e) => {
-                                setAge(e.target.value)
-                            }}
-                            className="form age"
-                        />
+                    <h4>Age</h4>
+                    <Form.Item name="age" initialValue={21}>
+                        <InputNumber min={0} max={100} />
                     </Form.Item>
 
                     <Form.Item style={{ marginTop: 50 }}>
-                        <button
-                            className="start-button"
-                            onClick={() => submitInfo()}
-                        >
+                        <button className="start-button" type="submit">
                             Start
                         </button>
                     </Form.Item>

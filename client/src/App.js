@@ -14,6 +14,8 @@ import Introduction from "./pages/introduction";
 
 function App() {
     const [stage, setStage] = useState(0);
+    const [session, setSession] = useState(null);
+
     const nextStage = function () {
         let step = 1;
         while (!((stage + step) in stages) && (step < 100)) {
@@ -27,12 +29,12 @@ function App() {
     }
 
     const stages = {
+        0: <Introduction setSession={setSession} afterSubmit={nextStage}/>,
         15: <Exp path={Smile} left={false} nextStage={nextStage}/>,
         1: <Dice path={number6} nextStage={nextStage}/>,
         5: <Estimate min={0} max={100} nextStage={nextStage}/>,
         10: <Exp path={number6} left={false} nextStage={nextStage}/>,
-        0: <Cup nextStage={nextStage}/>,
-        0: <Introduction afterSubmit={nextStage}/>,
+        2: <Cup nextStage={nextStage}/>,
         25: <Instruction num="1" message={experiment1_intro} nextStage={nextStage}/>,
         30: <Cup initialPos={0} nextStage={nextStage}/>,
         35: <Instruction num="2" message={experiment2_intro} nextStage={nextStage}/>,
