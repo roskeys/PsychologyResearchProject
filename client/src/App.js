@@ -83,7 +83,6 @@ function App() {
             }
         }),
         <Estimate min={0} max={100} onSubmit={value => {
-            console.log(value);
             axios.post("/api/exp1/result", {
                 session_id: session.session_id,
                 estimation: value / 100,
@@ -101,7 +100,6 @@ function App() {
             ]),
         }),
         <Estimate min={0} max={100} onSubmit={value => {
-            console.log(value);
             axios.post("/api/exp2/result", {
                 session_id: session.session_id,
                 estimation: value / 100,
@@ -118,7 +116,6 @@ function App() {
             },
         }),
         <Estimate min={0} max={100} onSubmit={value => {
-            console.log(value);
             axios.post("/api/exp3/result", {
                 session_id: session.session_id,
                 estimation: value / 100,
