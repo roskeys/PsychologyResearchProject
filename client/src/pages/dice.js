@@ -4,15 +4,21 @@ import "../App.css";
 function Dice(props) {
     return (
         <div className="outer-background">
-            <div>
+            <div style={{
+                margin: "0 auto"
+            }}>
                 <img
                     src={props.path}
                     style={{
-                        width: "60%",
-                        height: "60%",
+                        width: "auto",
+                        height: "auto",
                         margin: "0 auto",
+                        display: "block",
+                        minWidth: "200px",
+                        minHeight: "200px",
                         maxWidth: "400px",
                         maxHeight: "400px",
+                        objectFit: "fill"
                     }}
                     alt={props.path}/>
             </div>
