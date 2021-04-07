@@ -1,16 +1,16 @@
 import csv
-import logging
-import logging.handlers
+import logging.config
 import os
 import pathlib
 import random
 import uuid
-from logging.config import dictConfig
 from typing import Any, Callable, Dict, List, Tuple
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
-dictConfig({
+
+logging.config.dictConfig({
     'version': 1,
     'formatters': {
         'default': {
@@ -38,6 +38,7 @@ dictConfig({
 })
 
 app = Flask(__name__)
+CORS(app)
 
 
 class FileDB:
@@ -205,7 +206,6 @@ def log_request_info():
 def log_response_info(response):
     app.logger.info('Response: %s', response.get_data())
     return response
-
 
 
 if __name__ == '__main__':
