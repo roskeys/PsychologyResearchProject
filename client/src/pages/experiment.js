@@ -1,6 +1,5 @@
 import React from 'react';
 import "../App.css";
-import {Button} from "antd";
 
 function Exp(props) {
     let left = props.left ? "1" : "0";
