@@ -54,24 +54,6 @@ p {
     transform: translateY(4px) translateX(-50%);
 }
 
-.cup-base {
-    width: 100vw;
-    height: 50vh;
-    position: absolute;
-}
-
-.cup {
-    width: 105px;
-    height: 154px;
-    position: absolute;
-    background-size: 100px;
-    background-repeat: no-repeat;
-}
-
-.cup-0 {
-    background-image: url("./image/cup.png");
-}
-
 button {
     padding: 5px 15px;
     font-size: 24px;

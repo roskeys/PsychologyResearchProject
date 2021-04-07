@@ -1,6 +1,7 @@
 import React from 'react';
-import {StaggeredMotion, spring, presets} from 'react-motion';
+import { StaggeredMotion, spring, presets } from 'react-motion';
 import range from 'lodash.range';
+import './cup.css';
 
 class Cup extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class Cup extends React.Component {
 
     componentDidMount() {
         window.addEventListener('mousemove', this.handleMouseMove);
-        window.addEventListener('touchmove', this.handleTouchMove, {passive: false});
+        window.addEventListener('touchmove', this.handleTouchMove, { passive: false });
         window.addEventListener('mouseup', this.handleMouseUp);
         window.addEventListener('mousedown', this.handleMouseDown);
         window.addEventListener("touchend", this.handleMouseUp);
@@ -61,13 +62,13 @@ class Cup extends React.Component {
             })
     }
 
-    handleMouseMove = ({pageX: x, pageY: y}) => {
+    handleMouseMove = ({ pageX: x, pageY: y }) => {
         if (this.state.pressed) {
-            this.setState({x: x - 50, y: y - 240});
+            this.setState({ x: x - 50, y: y - 240 });
         }
     };
 
-    handleTouchMove = ({touches}) => {
+    handleTouchMove = ({ touches }) => {
         this.handleMouseMove(touches[0]);
     };
 
@@ -85,20 +86,18 @@ class Cup extends React.Component {
 
     render() {
         return (
-            <div className="outer-background">
-                <div style={{
-                    textAlign: "center"
-                }}>
+            <div className="cup-outer" style={{ height: "100%" }}>
+                <div className="cup-instruction">
                     <h4>Drag and shake the cup, release to continue.</h4>
-                    <br/>
+                    <br />
                     <h5>If release does not proceed, click the cup icon to proceed.</h5>
                 </div>
                 <StaggeredMotion
-                    defaultStyles={range(1).map(() => ({x: 0, y: 0}))}
+                    defaultStyles={range(1).map(() => ({ x: 0, y: 0 }))}
                     styles={this.getStyles}>
                     {balls =>
                         <div className="cup-base">
-                            {balls.map(({x, y}, i) =>
+                            {balls.map(({ x, y }, i) =>
                                 <div
                                     key={i}
                                     className={`cup cup-${i}`}
@@ -106,12 +105,12 @@ class Cup extends React.Component {
                                         WebkitTransform: `translate3d(${x}px, ${y}px, 0)`,
                                         transform: `translate3d(${x}px, ${y}px, 0)`,
                                         zIndex: balls.length - i,
-                                    }}/>
+                                    }} />
                             )}
                         </div>
                     }
                 </StaggeredMotion>
-                <footer/>
+                <footer />
             </div>
         );
     };

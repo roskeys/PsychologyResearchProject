@@ -1,0 +1,36 @@
+.cup-outer {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #d3adf7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+
+.cup-instruction {
+    position: absolute;
+    top: 50px;
+    text-align: center;
+}
+
+.cup-base {
+    width: 100vw;
+    height: 50vh;
+    position: absolute;
+}
+
+.cup {
+    width: 105px;
+    height: 154px;
+    position: absolute;
+    background-size: 100px;
+    background-repeat: no-repeat;
+}
+
+.cup-0 {
+    background-image: url("../image/cup.png");
+}
