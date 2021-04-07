@@ -14,7 +14,9 @@ function Exp(props) {
                         height: "45%",
                         opacity: left,
                         paddingLeft: "10%",
-                        float: "left"
+                        float: "left",
+                        maxWidth: "200px",
+                        maxHeight: "200px"
                     }}
                     alt={props.path}
                 />
@@ -27,8 +29,11 @@ function Exp(props) {
                         height: "45%",
                         opacity: right,
                         paddingRight: "10%",
-                        float: "right"
+                        float: "right",
+                        maxWidth: "200px",
+                        maxHeight: "200px"
                     }}
+                    alt={props.path}
                 />
             </div>
             <div style={{

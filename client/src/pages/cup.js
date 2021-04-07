@@ -82,7 +82,7 @@ class Cup extends React.Component {
                         </div>
                     }
                 </StaggeredMotion>
-                <h6></h6>
+                <br/>
             </div>
         );
     };

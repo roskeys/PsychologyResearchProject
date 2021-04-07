@@ -8,6 +8,8 @@ import number6 from "./image/number6.png";
 import Introduction from "./pages/introduction";
 import Thank from "./pages/thanks";
 import {experiment1_intro, experiment2_intro, experiment3_intro} from "./introductions";
+import Estimate from "./pages/estimate";
+import Dice from "./pages/dice";
 
 function App() {
     const [stage, setStage] = useState(0);
@@ -23,17 +25,14 @@ function App() {
         }
     }
 
-    const hello = function () {
-        console.log("Hello");
-    }
-
     const stages = {
-        0: <Cup nextStage={nextStage} hello={hello}/>,
-        // 0: <Exp path={number6} left={true} nextStage={nextStage}/>,
-        1: <Exp path={number6} left={false} nextStage={nextStage}/>,
-        3: <Welcome afterSubmit={nextStage}/>,
-        4: <Introduction num="1" message={experiment1_intro} nextStage={nextStage}/>,
-        5: <Cup initialPos={0} nextStage={nextStage}/>,
+        0: <Dice path={number6} nextStage={nextStage}/>,
+        5: <Estimate min={0} max={100} nextStage={nextStage}/>,
+        10: <Exp path={number6} left={false} nextStage={nextStage}/>,
+        15: <Cup nextStage={nextStage}/>,
+        20: <Welcome afterSubmit={nextStage}/>,
+        25: <Introduction num="1" message={experiment1_intro} nextStage={nextStage}/>,
+        30: <Cup initialPos={0} nextStage={nextStage}/>,
         35: <Introduction num="2" message={experiment2_intro} nextStage={nextStage}/>,
         55: <Introduction num="3" message={experiment3_intro} nextStage={nextStage}/>,
         100: <Thank/>
