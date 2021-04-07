@@ -5,3 +5,12 @@
     height: 100%;
     min-height: 100vh;
 }
+
+.start-button {
+    height: 50px;
+    width: 100px;
+    font-size: 24px;
+    margin: 0 auto !important;
+    text-align: center;
+    display: block;
+}

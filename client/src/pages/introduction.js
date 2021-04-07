@@ -73,7 +73,7 @@ const Introduction = ({ afterSubmit }) => {
 
                     <Form.Item style={{ marginTop: 50 }}>
                         <button
-                            className="submit-button"
+                            className="start-button"
                             onClick={() => submitInfo()}
                         >
                             Start
