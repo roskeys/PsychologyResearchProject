@@ -24,6 +24,7 @@ import number5 from "./image/number5.png";
 import number6 from "./image/number6.png";
 import Cup from "./pages/cup";
 
+const numbers = [number1, number2, number3, number4, number5, number6];
 
 function buildExperiment(group, sequence, mapping) {
     let experiment = [];
@@ -57,7 +58,7 @@ function App() {
     }
 
     const exp1_sequence = [0, 1];
-    const exp2_sequence = [1, 2, 3, 4, 5, 6];
+    const exp2_sequence = [0, 1, 2, 3, 4, 5];
     const exp3_sequence = session.group3 === 0 ?
         [0, 1] :
         [1, 0];
@@ -84,40 +85,11 @@ function App() {
 
         <Instruction num="2" message={experiment2_intro} nextStage={nextStage} />,
         ...buildExperiment(session.group2, exp2_sequence, {
-            0: {
-                1: <Dice path={number1} nextStage={nextStage} />,
-                2: <Dice path={number2} nextStage={nextStage} />,
-                3: <Dice path={number3} nextStage={nextStage} />,
-                4: <Dice path={number4} nextStage={nextStage} />,
-                5: <Dice path={number5} nextStage={nextStage} />,
-                6: <Dice path={number6} nextStage={nextStage} />,
-            },
-            1: {
-                1: [
-                    <Cup initialPos={0} nextStage={nextStage} />,
-                    <Dice path={number1} nextStage={nextStage} />
-                ],
-                2: [
-                    <Cup initialPos={0} nextStage={nextStage} />,
-                    <Dice path={number2} nextStage={nextStage} />
-                ],
-                3: [
-                    <Cup initialPos={0} nextStage={nextStage} />,
-                    <Dice path={number3} nextStage={nextStage} />
-                ],
-                4: [
-                    <Cup initialPos={0} nextStage={nextStage} />,
-                    <Dice path={number4} nextStage={nextStage} />
-                ],
-                5: [
-                    <Cup initialPos={0} nextStage={nextStage} />,
-                    <Dice path={number5} nextStage={nextStage} />
-                ],
-                6: [
-                    <Cup initialPos={0} nextStage={nextStage} />,
-                    <Dice path={number6} nextStage={nextStage} />
-                ],
-            },
+            0: numbers.map(number => <Dice path={number} nextStage={nextStage} />),
+            1: numbers.map(number => [
+                <Cup initialPos={0} nextStage={nextStage} />,
+                <Dice path={number} nextStage={nextStage} />
+            ]),
         }),
         <Estimate min={0} max={100} nextStage={nextStage} />,
 
