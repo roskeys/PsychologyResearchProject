@@ -1,5 +1,6 @@
 import React from 'react';
 import "../App.css";
+import {Button} from "antd";
 
 function Exp(props) {
     let left = props.left ? "1" : "0";
@@ -13,7 +14,7 @@ function Exp(props) {
                         width: "auto",
                         height: "auto",
                         opacity: left,
-                        // paddingLeft: "10%",
+                        paddingLeft: "10%",
                         float: "left",
                         minWidth: "200px",
                         minHeight: "200px",
@@ -30,7 +31,7 @@ function Exp(props) {
                         width: "auto",
                         height: "auto",
                         opacity: right,
-                        // paddingRight: "10%",
+                        paddingRight: "10%",
                         float: "right",
                         minWidth: "200px",
                         minHeight: "200px",

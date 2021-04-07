@@ -4,6 +4,7 @@ import Exp from "./pages/experiment";
 import 'antd/dist/antd.css';
 import './App.css';
 import Cup from "./pages/cup";
+import Smile from "./image/smilingface.png";
 import number6 from "./image/number6.png";
 import Introduction from "./pages/introduction";
 import Thank from "./pages/thanks";
@@ -26,7 +27,8 @@ function App() {
     }
 
     const stages = {
-        0: <Dice path={number6} nextStage={nextStage}/>,
+        0: <Exp path={Smile} left={false} nextStage={nextStage}/>,
+        1: <Dice path={number6} nextStage={nextStage}/>,
         5: <Estimate min={0} max={100} nextStage={nextStage}/>,
         10: <Exp path={number6} left={false} nextStage={nextStage}/>,
         15: <Cup nextStage={nextStage}/>,
