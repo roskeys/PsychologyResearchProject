@@ -10,13 +10,15 @@ function Exp(props) {
                 <img
                     src={props.path}
                     style={{
-                        width: "45%",
-                        height: "45%",
+                        width: "auto",
+                        height: "auto",
                         opacity: left,
-                        paddingLeft: "10%",
+                        // paddingLeft: "10%",
                         float: "left",
-                        maxWidth: "200px",
-                        maxHeight: "200px"
+                        minWidth: "200px",
+                        minHeight: "200px",
+                        maxWidth: "400px",
+                        maxHeight: "400px"
                     }}
                     alt={props.path}
                 />
@@ -25,13 +27,15 @@ function Exp(props) {
                     height={200}
                     src={props.path}
                     style={{
-                        width: "45%",
-                        height: "45%",
+                        width: "auto",
+                        height: "auto",
                         opacity: right,
-                        paddingRight: "10%",
+                        // paddingRight: "10%",
                         float: "right",
-                        maxWidth: "200px",
-                        maxHeight: "200px"
+                        minWidth: "200px",
+                        minHeight: "200px",
+                        maxWidth: "400px",
+                        maxHeight: "400px"
                     }}
                     alt={props.path}
                 />
