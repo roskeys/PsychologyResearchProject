@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Exp from "./pages/experiment";
+import axios from 'axios';
 
+import Exp from "./pages/experiment";
 import Estimate from "./pages/estimate";
 import Dice from "./pages/dice";
 import Instruction from "./pages/instruction";
@@ -43,7 +44,7 @@ function buildExperiment(group, sequence, mapping) {
 
 function App() {
     const [stage, setStage] = useState(0);
-    const [session, setSession] = useState({ group1: 0, group2: 0, group3: 0 });
+    const [session, setSession] = useState({ session_id: null, group1: 0, group2: 0, group3: 0 });
 
     const nextStage = function () {
         let step = 1;
@@ -81,7 +82,15 @@ function App() {
                 1: <Dice path={Sector34} nextStage={nextStage} />,
             }
         }),
-        <Estimate min={0} max={100} nextStage={nextStage} />,
+        <Estimate min={0} max={100} onSubmit={value => {
+            console.log(value);
+            axios.post("/api/exp1/result", {
+                session_id: session.session_id,
+                estimation: value / 100,
+            }).then(() => {
+                nextStage();
+            });
+        }} />,
 
         <Instruction num="2" message={experiment2_intro} nextStage={nextStage} />,
         ...buildExperiment(session.group2, exp2_sequence, {
@@ -91,7 +100,15 @@ function App() {
                 <Dice path={number} nextStage={nextStage} />
             ]),
         }),
-        <Estimate min={0} max={100} nextStage={nextStage} />,
+        <Estimate min={0} max={100} onSubmit={value => {
+            console.log(value);
+            axios.post("/api/exp2/result", {
+                session_id: session.session_id,
+                estimation: value / 100,
+            }).then(() => {
+                nextStage();
+            });
+        }} />,
 
         <Instruction num="3" message={experiment3_intro} nextStage={nextStage} />,
         ...buildExperiment(0, exp3_sequence, {
@@ -100,7 +117,15 @@ function App() {
                 1: <Exp path={Smile} left={true} nextStage={nextStage} />,
             },
         }),
-        <Estimate min={0} max={100} nextStage={nextStage} />,
+        <Estimate min={0} max={100} onSubmit={value => {
+            console.log(value);
+            axios.post("/api/exp3/result", {
+                session_id: session.session_id,
+                estimation: value / 100,
+            }).then(() => {
+                nextStage();
+            });
+        }} />,
 
         <Thank />
     ];
