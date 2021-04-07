@@ -21,6 +21,9 @@ class Estimate extends React.Component {
         const {value} = this.state;
         return (
             <div className="outer-background">
+                <h2>
+                Use the slider to indicate your estimation
+                </h2>
                 <Slider {...this.props}
                         onChange={this.handleChange}
                         value={value}

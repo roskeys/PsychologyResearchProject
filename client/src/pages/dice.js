@@ -4,6 +4,7 @@ import "../App.css";
 function Dice(props) {
     return (
         <div className="outer-background">
+            <h2>Press "Next" button to go to next round</h2>
             <div style={{
                 margin: "0 auto"
             }}>
