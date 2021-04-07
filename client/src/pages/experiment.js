@@ -6,6 +6,7 @@ function Exp(props) {
     let right = !props.left ? "1" : "0";
     return (
         <div className="outer-background">
+            <h2>Press "Next" button to go to next round</h2>
             <div>
                 <img
                     src={props.path}
