@@ -2,6 +2,7 @@ const style = {
     padding: "0 5%"
 }
 export const experiment1_intro_1 = <div style={style}>
+    1
     <li>In this experiment, you will see 25 images of smiling faces in sequence.</li>
     <li>After viewing each smiling face, press the <b>“Next”</b> button to proceed to the next round.</li>
     <li><b>Please move on to the next image as fast as possible.</b></li>
