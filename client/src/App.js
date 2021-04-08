@@ -93,8 +93,8 @@ function App() {
                 1: <Exp path={Smile} left={false} nextStage={nextStage}/>,
             },
             1: {
-                0: <Dice path={CoinTail} nextStage={nextStage}/>,
-                1: <Dice path={CoinHead} nextStage={nextStage}/>,
+                0: <Dice path={CoinHead} nextStage={nextStage}/>,
+                1: <Dice path={CoinTail} nextStage={nextStage}/>,
             },
             2: {
                 0: <Dice path={Sector34} nextStage={nextStage}/>,
