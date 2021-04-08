@@ -97,8 +97,8 @@ function App() {
                 1: <Dice path={CoinHead} nextStage={nextStage}/>,
             },
             2: {
-                0: <Dice path={Sector14} nextStage={nextStage}/>,
-                1: <Dice path={Sector34} nextStage={nextStage}/>,
+                0: <Dice path={Sector34} nextStage={nextStage}/>,
+                1: <Dice path={Sector14} nextStage={nextStage}/>,
             }
         }),
         // estimation page for experiment 1
