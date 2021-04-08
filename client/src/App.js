@@ -58,11 +58,11 @@ function App() {
         }
     }
 
-    const exp1_sequence = [0, 1];
-    const exp2_sequence = [0, 1, 2, 3, 4, 5];
+    const exp1_sequence = [1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0];
+    const exp2_sequence = [4, 5, 2, 5, 3, 4, 2, 0, 5, 1, 4, 5, 4, 3, 0, 1, 3, 5, 3, 3, 0, 4, 1, 5, 3];
     const exp3_sequence = session.group3 === 0 ?
-        [0, 1] :
-        [1, 0];
+    [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1]:
+    [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0];
 
     const stages = [
         <Introduction setSession={setSession} afterSubmit={nextStage} />,
