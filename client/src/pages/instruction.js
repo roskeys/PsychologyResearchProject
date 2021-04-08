@@ -3,7 +3,9 @@ import "../App.css"
 
 function Instruction(props) {
     return (
-        <div className="outer-background">
+        <div className="outer-background" style={{
+            paddingTop: "5%"
+        }}>
             <h1>
                 Game {props.num}
             </h1>

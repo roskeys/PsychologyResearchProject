@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from 'axios';
 
 import Exp from "./pages/experiment";
@@ -7,7 +7,14 @@ import Dice from "./pages/dice";
 import Instruction from "./pages/instruction";
 import Introduction from "./pages/introduction";
 import Thank from "./pages/thanks";
-import { experiment1_intro, experiment2_intro, experiment3_intro } from "./texts";
+import {
+    experiment1_intro_1,
+    experiment1_intro_2,
+    experiment1_intro_3,
+    experiment2_intro_1,
+    experiment2_intro_2,
+    experiment3_intro
+} from "./texts";
 
 import 'antd/dist/antd.css';
 import './App.css';
@@ -44,7 +51,7 @@ function buildExperiment(group, sequence, mapping) {
 
 function App() {
     const [stage, setStage] = useState(0);
-    const [session, setSession] = useState({ session_id: null, group1: 0, group2: 0, group3: 0 });
+    const [session, setSession] = useState({session_id: null, group1: 0, group2: 0, group3: 0});
 
     const nextStage = function () {
         let step = 1;
@@ -61,25 +68,25 @@ function App() {
     const exp1_sequence = [1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0];
     const exp2_sequence = [4, 5, 2, 5, 3, 4, 2, 0, 5, 1, 4, 5, 4, 3, 0, 1, 3, 5, 3, 3, 0, 4, 1, 5, 3];
     const exp3_sequence = session.group3 === 0 ?
-    [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1]:
-    [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0];
+        [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1] :
+        [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0];
 
     const stages = [
-        <Introduction setSession={setSession} afterSubmit={nextStage} />,
+        <Introduction setSession={setSession} afterSubmit={nextStage}/>,
 
-        <Instruction num="1" message={experiment1_intro} nextStage={nextStage} />,
+        <Instruction num="1" message={experiment1_intro_1} nextStage={nextStage}/>,
         ...buildExperiment(session.group1, exp1_sequence, {
             0: {
-                0: <Exp path={Smile} left={false} nextStage={nextStage} />,
-                1: <Exp path={Smile} left={true} nextStage={nextStage} />,
+                0: <Exp path={Smile} left={false} nextStage={nextStage}/>,
+                1: <Exp path={Smile} left={true} nextStage={nextStage}/>,
             },
             1: {
-                0: <Dice path={CoinTail} nextStage={nextStage} />,
-                1: <Dice path={CoinHead} nextStage={nextStage} />,
+                0: <Dice path={CoinTail} nextStage={nextStage}/>,
+                1: <Dice path={CoinHead} nextStage={nextStage}/>,
             },
             2: {
-                0: <Dice path={Sector14} nextStage={nextStage} />,
-                1: <Dice path={Sector34} nextStage={nextStage} />,
+                0: <Dice path={Sector14} nextStage={nextStage}/>,
+                1: <Dice path={Sector34} nextStage={nextStage}/>,
             }
         }),
         <Estimate min={0} max={100} onSubmit={value => {
@@ -89,14 +96,14 @@ function App() {
             }).then(() => {
                 nextStage();
             });
-        }} />,
+        }}/>,
 
-        <Instruction num="2" message={experiment2_intro} nextStage={nextStage} />,
+        <Instruction num="2" message={experiment2_intro_2} nextStage={nextStage}/>,
         ...buildExperiment(session.group2, exp2_sequence, {
-            0: numbers.map(number => <Dice path={number} nextStage={nextStage} />),
+            0: numbers.map(number => <Dice path={number} nextStage={nextStage}/>),
             1: numbers.map(number => [
-                <Cup initialPos={0} nextStage={nextStage} />,
-                <Dice path={number} nextStage={nextStage} />
+                <Cup initialPos={0} nextStage={nextStage}/>,
+                <Dice path={number} nextStage={nextStage}/>
             ]),
         }),
         <Estimate min={0} max={100} onSubmit={value => {
@@ -106,13 +113,13 @@ function App() {
             }).then(() => {
                 nextStage();
             });
-        }} />,
+        }}/>,
 
-        <Instruction num="3" message={experiment3_intro} nextStage={nextStage} />,
+        <Instruction num="3" message={experiment3_intro} nextStage={nextStage}/>,
         ...buildExperiment(0, exp3_sequence, {
             0: {
-                0: <Exp path={Smile} left={false} nextStage={nextStage} />,
-                1: <Exp path={Smile} left={true} nextStage={nextStage} />,
+                0: <Exp path={Smile} left={false} nextStage={nextStage}/>,
+                1: <Exp path={Smile} left={true} nextStage={nextStage}/>,
             },
         }),
         <Estimate min={0} max={100} onSubmit={value => {
@@ -122,9 +129,9 @@ function App() {
             }).then(() => {
                 nextStage();
             });
-        }} />,
+        }}/>,
 
-        <Thank />
+        <Thank/>
     ];
     return stages[stage];
 }

@@ -23,7 +23,7 @@ class Estimate extends React.Component {
                         height: "30px"
                     }} />
                 <button
-                    className="submit-button"
+                    className="estimate"
                     style={{
                         marginTop: "10%"
                     }}
