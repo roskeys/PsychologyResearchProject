@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 class Estimate extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 0 };
+        this.state = { value: 50 };
     }
 
     render() {
