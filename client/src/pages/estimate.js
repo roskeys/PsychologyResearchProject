@@ -1,27 +1,28 @@
 import React from 'react';
-import { Slider } from 'antd';
+import {Slider} from 'antd';
 import 'antd/dist/antd.css';
 
 
 class Estimate extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: 50 };
+        this.state = {value: 50};
     }
 
     render() {
-        const { value } = this.state;
+        const {value} = this.state;
         return (
             <div className="outer-background">
                 <h2>
-                    Use the slider to indicate your estimation: {value}%
+                    Use the slider to indicate your estimation of {this.props.toEstimate}: {value}%
                 </h2>
+
                 <Slider {...this.props}
-                    onChange={value => this.setState({ value })}
-                    value={value}
-                    style={{
-                        height: "30px"
-                    }} />
+                        onChange={value => this.setState({value})}
+                        value={value}
+                        style={{
+                            height: "30px"
+                        }}/>
                 <button
                     className="estimate"
                     style={{

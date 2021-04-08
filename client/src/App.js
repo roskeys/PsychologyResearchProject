@@ -72,11 +72,10 @@ function App() {
         [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0];
 
     const stages = [
-        <Cup initialPos={0} nextStage={nextStage}/>,
         <Introduction setSession={setSession} afterSubmit={nextStage}/>,
-
-        ((group)=>{
-            switch (group){
+        // experiment 1 instruction
+        ((group) => {
+            switch (group) {
                 case 0:
                     return <Instruction num="1" message={experiment1_intro_1} nextStage={nextStage}/>
                 case 1:
@@ -87,6 +86,7 @@ function App() {
                     return <Instruction num="1" message={experiment1_intro_1} nextStage={nextStage}/>
             }
         })(session.group1),
+        // experiment 1
         ...buildExperiment(session.group1, exp1_sequence, {
             0: {
                 0: <Exp path={Smile} left={false} nextStage={nextStage}/>,
@@ -101,17 +101,38 @@ function App() {
                 1: <Dice path={Sector34} nextStage={nextStage}/>,
             }
         }),
-        <Estimate min={0} max={100} onSubmit={value => {
-            axios.post("/api/exp1/result", {
-                session_id: session.session_id,
-                estimation: value / 100,
-            }).then(() => {
-                nextStage();
-            });
-        }}/>,
+        // estimation page for experiment 1
+        ((group) => {
+            let toEstimate;
+            switch (group) {
+                case 0:
+                    toEstimate = "smiling faces shown on the left";
+                    break
+                case 1:
+                    toEstimate = "coins facing up";
+                    break
+                case 2:
+                    toEstimate = "probability for ¼ of circles showing up"
+                    break
+                default:
+                    toEstimate = "smiling faces shown on the left";
+                    break
+            }
+            return <Estimate min={0} max={100}
+                             toEstimate={toEstimate}
+                             onSubmit={value => {
+                                 axios.post("/api/exp1/result", {
+                                     session_id: session.session_id,
+                                     estimation: value / 100,
+                                 }).then(() => {
+                                     nextStage();
+                                 });
+                             }}/>
+        })(session.group1),
 
-        ((group)=>{
-            switch (group){
+        // exp 2 instruction
+        ((group) => {
+            switch (group) {
                 case 0:
                     return <Instruction num="2" message={experiment2_intro_1} nextStage={nextStage}/>
                 case 1:
@@ -120,6 +141,7 @@ function App() {
                     return <Instruction num="2" message={experiment2_intro_1} nextStage={nextStage}/>
             }
         })(session.group2),
+        // exp 2
         ...buildExperiment(session.group2, exp2_sequence, {
             0: numbers.map(number => <Dice path={number} nextStage={nextStage}/>),
             1: numbers.map(number => [
@@ -127,22 +149,28 @@ function App() {
                 <Dice path={number} nextStage={nextStage}/>
             ]),
         }),
-        <Estimate min={0} max={100} onSubmit={value => {
-            axios.post("/api/exp2/result", {
-                session_id: session.session_id,
-                estimation: value / 100,
-            }).then(() => {
-                nextStage();
-            });
-        }}/>,
+        // exp 2 estimate
+        <Estimate min={0} max={100}
+                  toEstimate={"dice number 6 showing up"}
+                  onSubmit={value => {
+                      axios.post("/api/exp2/result", {
+                          session_id: session.session_id,
+                          estimation: value / 100,
+                      }).then(() => {
+                          nextStage();
+                      });
+                  }}/>,
 
+        // exp 3 instruction
         <Instruction num="3" message={experiment3_intro} nextStage={nextStage}/>,
+        // exp 3
         ...buildExperiment(0, exp3_sequence, {
             0: {
                 0: <Exp path={Smile} left={false} nextStage={nextStage}/>,
                 1: <Exp path={Smile} left={true} nextStage={nextStage}/>,
             },
         }),
+        // exp 3 estimate
         <Estimate min={0} max={100} onSubmit={value => {
             axios.post("/api/exp3/result", {
                 session_id: session.session_id,
