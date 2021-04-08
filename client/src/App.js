@@ -171,14 +171,16 @@ function App() {
             },
         }),
         // exp 3 estimate
-        <Estimate min={0} max={100} onSubmit={value => {
-            axios.post("/api/exp3/result", {
-                session_id: session.session_id,
-                estimation: value / 100,
-            }).then(() => {
-                nextStage();
-            });
-        }}/>,
+        <Estimate min={0} max={100}
+                  toEstimate={"smiling faces showing up on the left"}
+                  onSubmit={value => {
+                      axios.post("/api/exp3/result", {
+                          session_id: session.session_id,
+                          estimation: value / 100,
+                      }).then(() => {
+                          nextStage();
+                      });
+                  }}/>,
 
         <Thank/>
     ];
