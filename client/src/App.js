@@ -97,8 +97,8 @@ function App() {
                 1: <Dice path={CoinHead} nextStage={nextStage}/>,
             },
             2: {
-                0: <Dice path={Sector14} nextStage={nextStage}/>,
-                1: <Dice path={Sector34} nextStage={nextStage}/>,
+                0: <Dice path={Sector34} nextStage={nextStage}/>,
+                1: <Dice path={Sector14} nextStage={nextStage}/>,
             }
         }),
         <Estimate min={0} max={100} onSubmit={value => {

@@ -15,7 +15,7 @@ export const experiment1_intro_2 = <div style={style}>
     <li>In this experiment, you will see 25 images of coins in sequence.</li>
     <li>After viewing each coin, press the <b>“Next”</b> button to proceed to the next round.</li>
     <li><b>Please move on to the next image as fast as possible.</b></li>
-    <li>After viewing the 25 coins, please submit your estimation of the <b>probability for coins facing up</b> using 
+    <li>After viewing the 25 coins, please submit your estimation of the <b>probability for coin head facing up</b> using 
         the scrollbar and press the <b>“Submit”</b> button.
     </li>
 </div>
