@@ -72,9 +72,21 @@ function App() {
         [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0];
 
     const stages = [
+        <Cup initialPos={0} nextStage={nextStage}/>,
         <Introduction setSession={setSession} afterSubmit={nextStage}/>,
 
-        <Instruction num="1" message={experiment1_intro_1} nextStage={nextStage}/>,
+        ((group)=>{
+            switch (group){
+                case 0:
+                    return <Instruction num="1" message={experiment1_intro_1} nextStage={nextStage}/>
+                case 1:
+                    return <Instruction num="1" message={experiment1_intro_2} nextStage={nextStage}/>
+                case 2:
+                    return <Instruction num="1" message={experiment1_intro_3} nextStage={nextStage}/>
+                default:
+                    return <Instruction num="1" message={experiment1_intro_1} nextStage={nextStage}/>
+            }
+        })(session.group1),
         ...buildExperiment(session.group1, exp1_sequence, {
             0: {
                 0: <Exp path={Smile} left={false} nextStage={nextStage}/>,
@@ -98,7 +110,16 @@ function App() {
             });
         }}/>,
 
-        <Instruction num="2" message={experiment2_intro_2} nextStage={nextStage}/>,
+        ((group)=>{
+            switch (group){
+                case 0:
+                    return <Instruction num="2" message={experiment2_intro_1} nextStage={nextStage}/>
+                case 1:
+                    return <Instruction num="2" message={experiment2_intro_2} nextStage={nextStage}/>
+                default:
+                    return <Instruction num="2" message={experiment2_intro_1} nextStage={nextStage}/>
+            }
+        })(session.group2),
         ...buildExperiment(session.group2, exp2_sequence, {
             0: numbers.map(number => <Dice path={number} nextStage={nextStage}/>),
             1: numbers.map(number => [

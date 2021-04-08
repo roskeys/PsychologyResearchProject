@@ -2,6 +2,7 @@ const style = {
     padding: "0 5%"
 }
 export const experiment1_intro_1 = <div style={style}>
+    1
     <li>In this experiment, you will see 25 images of smiling faces in sequence.</li>
     <li>After viewing each smiling face, press the <b>“Next”</b> button to proceed to the next round.</li>
     <li>After viewing the 25 smiling faces, please submit your estimation of the <b>probability for the smiling faces
@@ -10,6 +11,7 @@ export const experiment1_intro_1 = <div style={style}>
 </div>
 
 export const experiment1_intro_2 = <div style={style}>
+    2
     <li>In this experiment, you will see 25 images of smiling faces in sequence.</li>
     <li>After viewing each smiling face, press the <b>“Next”</b> button to proceed to the next round.</li>
     <li>After viewing the 25 smiling faces, please submit your estimation of the <b>probability of the smiling faces
@@ -18,6 +20,7 @@ export const experiment1_intro_2 = <div style={style}>
 </div>
 
 export const experiment1_intro_3 = <div style={style}>
+    3
     <li>In this experiment, you will see 25 images of smiling faces in sequence.</li>
     <li>After viewing each smiling face, press the <b>“Next”</b> button to proceed to the next round.</li>
     <li>After viewing the 25 smiling faces, please submit your estimation of the <b>probability of the smiling faces
