@@ -89,8 +89,8 @@ function App() {
         // experiment 1
         ...buildExperiment(session.group1, exp1_sequence, {
             0: {
-                0: <Exp path={Smile} left={false} nextStage={nextStage}/>,
-                1: <Exp path={Smile} left={true} nextStage={nextStage}/>,
+                0: <Exp path={Smile} left={true} nextStage={nextStage}/>,
+                1: <Exp path={Smile} left={false} nextStage={nextStage}/>,
             },
             1: {
                 0: <Dice path={CoinTail} nextStage={nextStage}/>,
