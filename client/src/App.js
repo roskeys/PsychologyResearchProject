@@ -166,8 +166,8 @@ function App() {
         // exp 3
         ...buildExperiment(0, exp3_sequence, {
             0: {
-                0: <Exp path={Smile} left={false} nextStage={nextStage}/>,
-                1: <Exp path={Smile} left={true} nextStage={nextStage}/>,
+                0: <Exp path={Smile} left={true} nextStage={nextStage}/>,
+                1: <Exp path={Smile} left={false} nextStage={nextStage}/>,
             },
         }),
         // exp 3 estimate
