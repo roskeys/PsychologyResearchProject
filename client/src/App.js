@@ -184,7 +184,19 @@ function App() {
 
         <Thank/>
     ];
-    return stages[stage];
+    return (
+        <div>
+            <div style={{
+                position: "absolute",
+                left: 0,
+                height: 10,
+                zIndex: 10,
+                width: "" + (stage * 100 / stages.length) + "vw",
+                backgroundColor: "black"
+            }}/>
+            {stages[stage]}
+        </div>
+    );
 }
 
 export default App;
