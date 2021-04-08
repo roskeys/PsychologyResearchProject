@@ -23,7 +23,7 @@ export const experiment1_intro_3 = <div style={style}>
     <li>In this experiment, you will see 25 images of ¼ and ¾ of a circle in sequence.</li>
     <li>After viewing each circle, press the <b>“Next”</b> button to proceed to the next round.</li>
     <li><b>Please move on to the next image as fast as possible.</b></li>
-    <li>After viewing the 25 circles, please submit your estimation of the <b>probability for ¼ of circles showing
+    <li>After viewing the 25 circles, please submit your estimation of the <b>probability for ¾ of circles showing
         up</b> using the scrollbar and press the <b>“Submit”</b> button.
     </li>
 </div>
