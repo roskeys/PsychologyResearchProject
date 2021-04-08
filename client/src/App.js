@@ -112,7 +112,7 @@ function App() {
                     toEstimate = "coins facing up";
                     break
                 case 2:
-                    toEstimate = "probability for ¼ of circles showing up"
+                    toEstimate = "probability for ¾ of circle showing up"
                     break
                 default:
                     toEstimate = "smiling faces shown on the left";
