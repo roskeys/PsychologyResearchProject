@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     display: -webkit-flex;
     -webkit-justify-content: center;
     -webkit-align-items: center;
